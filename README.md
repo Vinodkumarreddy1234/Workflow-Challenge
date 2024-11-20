@@ -1,6 +1,8 @@
+# Lead Scoring System
+
 def calculate_lead_score(company_size, annual_budget, industry, urgency):
     score = 0
-
+    
     # Company Size Scoring
     if company_size <= 50:
         score += 10
@@ -23,20 +25,20 @@ def calculate_lead_score(company_size, annual_budget, industry, urgency):
 
     # Industry Scoring
     industry_scores = {
-        "Technology": 30,
-        "Finance": 25,
-        "Healthcare": 20,
-        "Retail": 15,
-        "Other": 10
+        'Technology': 30,
+        'Finance': 25,
+        'Healthcare': 20,
+        'Retail': 15,
+        'Other': 10
     }
     score += industry_scores.get(industry, 10)  # Default to 10 if industry not found
 
     # Urgency Scoring
-    if urgency == "Immediate":
+    if urgency == 'Immediate':
         score += 40
-    elif urgency == "Short-term":
+    elif urgency == 'Short-term':
         score += 30
-    elif urgency == "Medium-term":
+    elif urgency == 'Medium-term':
         score += 20
     else:
         score += 10
@@ -44,19 +46,20 @@ def calculate_lead_score(company_size, annual_budget, industry, urgency):
     return score
 
 # Example usage
-company_size = 150  # Example input
-annual_budget = 30000  # Example input
-industry = "Technology"  # Example input
-urgency = "Immediate"  # Example input
+company_size = 150
+annual_budget = 30000
+industry = 'Technology'
+urgency = 'Immediate'
 
 lead_score = calculate_lead_score(company_size, annual_budget, industry, urgency)
-print("Lead Score:", lead_score)
 
-# Action based on score
+# Lead Qualification
 if lead_score >= 70:
-    # Add to "Qualified Leads" Google Sheet
-    pass
+    print("Add to Qualified Leads Google Sheet")
+    print("Send Welcome Email")
 else:
-    # Add to "Nurture Campaign" Google Sheet
-    pass
+    print("Add to Nurture Campaign Google Sheet")
 
+# Optional Notification
+if lead_score >= 70:
+    print("Notify Sales Team of high-value lead")
